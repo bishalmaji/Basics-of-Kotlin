@@ -1,0 +1,163 @@
+Basics of Kotlin
+/**
+ * Function calling learning
+ * play.kotlinlang.org
+ */
+
+/*Warning: Unlike in some languages, such as Java,
+ *  where a function can change the value passed into a parameter, parameters in Kotlin are immutable.
+ *  You cannot reassign the value of a parameter from within the function body.
+*/
+
+fun main() {
+    //return type of string
+    println(getMessage())
+    
+    //paramater function
+    println(sumOfTwoNo(4,5))
+    
+    //function is passed as a function paramater
+    otherFunction(::printMessage)
+
+    typeConversion();
+    
+    if(findANo(637)){
+        println("Number is present within the range 1 to 100")
+    }else{
+        println("out of range")
+    }
+    
+//     println(describeFishTank(74))
+    
+//     println(assignFoodToFish())
+    
+    LearnArrListLoops()
+    
+    
+}
+fun getMessage(): String {
+    val first_name="Bishal"
+    val last_name="Maji" 
+    return "$first_name  $last_name"
+}
+
+fun sumOfTwoNo(n1: Int, n2:Int): String{
+    return "sum of two no=${n1.inc()+n2}"
+}
+
+
+
+
+//function With Empty Para And No Return
+fun otherFunction(printer: () -> Unit) {
+    printer()
+}
+
+fun printMessage() {
+    println("from another function")
+}
+
+
+/*
+ * basics of kotlin
+ * variables, condition, assign etc
+ * 
+ * */
+ 
+ //NOTE: val is imutable(unchangable), while var is mutable
+ 
+fun typeConversion(){
+    val a="34"
+    val converted_a=a.toInt()
+    val b=30
+    
+    println("${converted_a+b}")
+}
+
+//compare condition and boolean
+fun findANo(a:Int): Boolean{
+    var status=false
+    if(a in 1..100){
+       status=true
+    }
+    return status
+}
+
+//using when statement
+fun describeFishTank(noOfFish:Int):String{
+    var message=""
+    when(noOfFish){
+        0-> message= "Empty Tank"
+        in 1..50 -> message= "Average Tank"
+        else -> message= "Big Tank"
+    }
+    return message;
+}
+
+
+// Learn about nullability-by default variable can not be null
+fun assignFoodToFish(food_count: Int? = null ): Int {
+    //by default give 5 food to fish
+
+    
+
+ 
+// new Method- if count is not null then decreament it by 1 or assign 5 to it ---
+//  ? and :? are two different operator
+var result = food_count?.dec() ?: 5
+    return result
+}
+
+
+/*Explore: Arrays,list and loops
+ * 1.Declare a list using listOf and print it out. This list cannot be changed.
+ * 2.Declare a list that can be changed using mutableListOf.
+ * 3.With a list defined with val, you can't change which list the variable refers to,
+ *  but you can still change the contents of the list.
+ * 4.Array. Once you create an array, the size is fixed.
+ * 5.With an array defined with val, you can't change which array the variable refers to, 
+ * but you can still change the contents of the array.
+ * 6. arrayOf("fish",5), intArrayOf(5,6)
+ * 7.'in' operatior is used for , using for loop, see eg inside funciton
+ * 
+ * */
+fun LearnArrListLoops() {
+    
+// val numbers = intArrayOf(1,2,3)
+// val numbers3 = intArrayOf(4,5,6)
+// val foo2 = numbers3 + numbers
+// println(foo2[5])
+
+//output=⇒ [[I@89178b4, [Atlantic, Pacific], salmon]
+val numbers = intArrayOf(1, 2, 3)
+val oceans = listOf("Atlantic", "Pacific")
+val oddList = listOf(numbers, oceans, "salmon")
+println(oddList)
+
+
+//initilize the array{} here 'it' refers to the index, and 5 is the size of the array
+val array = Array (5) { it * 2 }
+println(java.util.Arrays.toString(array))
+
+
+val animals_arr= listOf("shark", "monkey", "frog")
+println("---------------------Array work----------------")
+
+// for(animal in animals_arr){
+//     print(animal+" ,")
+// }
+
+for((index, element) in animals_arr.withIndex()){
+    println("$index animal is = $element")
+}
+}
+
+
+
+
+
+
+
+
+
+
